@@ -1,0 +1,179 @@
+{
+    "data":{
+        "totalData": 10,
+        "surveys":[
+            {
+                "id":1,
+                "type": "multi",
+                "question": "What's your biggest priority right now?",
+                "choices": {
+                    "1": "Finding a faster way to work",
+                    "2": "Problem-solving",
+                    "3": "Staff developmen"
+                },
+                "answers":{
+                    "1": false,
+                    "2": false,
+                    "3": false
+                }
+            },
+            {   "id": 2,
+                "type": "single",
+                "question": "In the last month, what has been your biggest pain point?",
+                "choices": {
+                    "1": "Finding enough time for important tasks",
+                    "2": "Delegating work",
+                    "3": "Having enough to do"
+                },
+                "answers":{
+                    "1": false,
+                    "2": false,
+                    "3": false
+                   
+                }
+            },
+            {
+                "id": 3,
+                "type": "multi",
+                "question": " How much time do you spend using [product or service]?",
+                "choices": {
+                    "1": "Less than a minute",
+                    "2": "About 1 - 2 minutes",
+                    "3": "Between 2 and 5 minutes",
+                    "4": "More than 5 minutes"
+                },
+                "answers":{
+                    "1": false,
+                    "2": false,
+                    "3": false,
+                    "4": false
+                }
+            },
+            {
+                "id": 4,
+                "type": "single",
+                "question": "Are you able to find what you're looking for on the website homepage",
+                "choices": {
+                    "1": "yes",
+                    "2": "no"
+                },
+                "answers":{
+                    "1": false,
+                    "2": false
+                   
+                }
+            },
+            {
+                "id":5,
+                "type": "openend",
+                "question": "How can we improve your experience for the future?",
+                "choices": {
+                    "text":""
+                },
+                "answers":{
+                    "text":""
+                }
+            },
+            {
+                "id":6,
+                "type": "single",
+                "question": "What was the ease of your experience with our company?",
+                "choices": {
+                    "1": "Extremely difficult",
+                    "2": "Somewhat difficult",
+                    "3": "Neutral",
+                    "4": "Somewhat easy",
+                    "5": "Extremely easy"
+                },
+                "answers":{
+                    "1": false,
+                    "2": false,
+                    "3": false,
+                    "4": false,
+                    "5": false
+                }
+            },
+            {
+                "id":7,
+                "type": "single",
+                "question": "The company did everything it could to make my process as easy as possible.",
+                "choices": {
+                    "1": "Strongly disagree",
+                    "2": "Somewhat disagree",
+                    "3": "Neutral",
+                    "4": "Somewhat agree",
+                    "5": "Strongly agree"
+                },
+                "answers":{
+                    "1": false,
+                    "2": false,
+                    "3": false,
+                    "4": false,
+                    "5": false
+                }
+            },
+            {
+                "id":8,
+                "type": "openend",
+                "question": "Tell us your experience while purchasing the goods?",
+                "choices": {
+                    "text":""
+                },
+                "answers":{
+                    "text":""
+                }
+            },
+            {
+                "id": 9,
+                "type": "multi",
+                "question": "What is area you need to improve right now?",
+                "choices": {
+                    "1": "Finding a faster way to work",
+                    "2": "Problem-solving",
+                    "3": "Staff development"
+                },
+                "answers":{
+                    "1": false,
+                    "2": false,
+                    "3": false
+
+                }
+            },
+            {
+                "id":10,
+                "type": "single",
+                "question": "How much effort did you have to put forth while working with our company?",
+                "choices": {
+                    "1": "Much more than expected",
+                    "2": "Somewhat more than expected",
+                    "3": "As much as expected"
+                },
+                "answers":{
+                    "1": false,
+                    "2": false,
+                    "3": false
+                }
+            },
+            {
+                "id":11,
+                "type": "single",
+                "question": "Rate our service at the scale of 5",
+                "choices": {
+                    "1": 1,
+                    "2": 2,
+                    "3": 3,
+                    "4": 4,
+                    "5": 5
+
+                },
+                "answers":{
+                    "1": false,
+                    "2": false,
+                    "3": false,
+                    "4": false,
+                    "5": false
+                }
+            }
+        ]
+    }
+}
