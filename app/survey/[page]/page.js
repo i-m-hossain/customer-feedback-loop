@@ -144,12 +144,13 @@ const Survey = () => {
     });
     axios.post("/api/survey", updatedData);
     LocalStorage.remove("surveyQuestions");
-    setSurveyData([]);
     const onConfirm = () => {
       router.push("/");
+      setSurveyData([]);
     };
     const onCancel = () => {
       router.push("/finish");
+      setSurveyData([]);
     };
     toast(
       <Msg
