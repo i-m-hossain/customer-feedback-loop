@@ -1,7 +1,7 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { constants } from "@/config/routes";
+import { constants, routes } from "@/config/routes";
 import Button from "@/components/Button";
 import { GrFormPreviousLink } from "react-icons/gr";
 import { GrFormNextLink } from "react-icons/gr";
@@ -10,6 +10,7 @@ import LocalStorage from "@/lib/localStorage";
 import { questionTypes } from "@/utils/questionTypes";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { SurveyContext } from "@/app/Provider";
 
 const Survey = () => {
   const param = useParams();
@@ -19,14 +20,34 @@ const Survey = () => {
   const [isFirstPage, setIsFirstPage] = useState(false);
   const [pageData, setPageData] = useState();
   const [isSubmitted, setIsSubmitted] = useState(false);
-
+  const { data: surveyData, setData: setSurveyData } =
+    useContext(SurveyContext);
   const router = useRouter();
   const [answers, setAnswers] = useState({});
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const q = LocalStorage.get("surveyQuestions");
-    setData(q);
-  }, []);
+    if (q) {
+      setData(q);
+    } else if (surveyData.length > 0) {
+      setData(surveyData);
+    } else {
+      fetchData();
+    }
+  }, [surveyData]);
+
+  const fetchData = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch(routes.surveyEndpoint);
+      const data = await response.json();
+      setSurveyData(data?.surveys?.surveys);
+    } catch (err) {
+      console.log(err);
+    }
+    setLoading(false);
+  };
   useEffect(() => {
     setIsLastPage(
       pageNumber === Math.ceil(data?.length / constants.questionPerPage)
@@ -59,6 +80,7 @@ const Survey = () => {
     }
     return true;
   };
+
   const handlePrev = () => {
     const updatedData = data.map((item) => {
       if (answers.hasOwnProperty(item.id)) {
@@ -67,6 +89,7 @@ const Survey = () => {
       return item;
     });
     LocalStorage.set("surveyQuestions", updatedData);
+    setSurveyData(updatedData);
     router.push("/survey/" + (pageNumber - 1));
   };
 
@@ -92,6 +115,7 @@ const Survey = () => {
       return item;
     });
     LocalStorage.set("surveyQuestions", updatedData);
+    setSurveyData(updatedData);
     axios.post("/api/survey", updatedData);
     router.push("/survey/" + (pageNumber + 1));
   };
@@ -120,7 +144,7 @@ const Survey = () => {
     });
     axios.post("/api/survey", updatedData);
     LocalStorage.remove("surveyQuestions");
-
+    setSurveyData([]);
     const onConfirm = () => {
       router.push("/");
     };
@@ -280,37 +304,51 @@ const Survey = () => {
   }
 
   return (
-    <div className="p-6">
-      <form onSubmit={handleSubmit}>
-        <div className="flex flex-col gap-y-4">
-          {pageData?.map((item, index) => (
-            <React.Fragment key={index}>
-              {RenderItem(item, handleChange)}
-            </React.Fragment>
-          ))}
+    <>
+      {loading ? (
+        <h2 className="text-center">Loading...</h2>
+      ) : (
+        <div className="p-6">
+          <form onSubmit={handleSubmit}>
+            <div className="flex flex-col gap-y-4">
+              {pageData?.map((item, index) => (
+                <React.Fragment key={index}>
+                  {RenderItem(item, handleChange)}
+                </React.Fragment>
+              ))}
+            </div>
+            {!isSubmitted && (
+              <div className="pt-8 flex gap-16 justify-center">
+                {!isFirstPage ? (
+                  <Button
+                    disabled={isFirstPage}
+                    onClick={handlePrev}
+                    type="button"
+                  >
+                    <GrFormPreviousLink />
+                    <span>Prev</span>
+                  </Button>
+                ) : (
+                  <span></span>
+                )}
+                {isLastPage ? (
+                  <Button type="submit">Submit</Button>
+                ) : (
+                  <Button
+                    disabled={isLastPage}
+                    onClick={handleNext}
+                    type="button"
+                  >
+                    <span>Next</span>
+                    <GrFormNextLink />
+                  </Button>
+                )}
+              </div>
+            )}
+          </form>
         </div>
-        {!isSubmitted && (
-          <div className="pt-8 flex gap-16 justify-center">
-            {!isFirstPage ? (
-              <Button disabled={isFirstPage} onClick={handlePrev} type="button">
-                <GrFormPreviousLink />
-                <span>Prev</span>
-              </Button>
-            ) : (
-              <span></span>
-            )}
-            {isLastPage ? (
-              <Button type="submit">Submit</Button>
-            ) : (
-              <Button disabled={isLastPage} onClick={handleNext} type="button">
-                <span>Next</span>
-                <GrFormNextLink />
-              </Button>
-            )}
-          </div>
-        )}
-      </form>
-    </div>
+      )}
+    </>
   );
 };
 

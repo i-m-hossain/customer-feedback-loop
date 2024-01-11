@@ -9,8 +9,8 @@
       "3": "Staff developmen"
     },
     "answers": {
-      "1": true,
-      "2": false,
+      "1": false,
+      "2": true,
       "3": false
     }
   },
@@ -24,8 +24,8 @@
       "3": "Having enough to do"
     },
     "answers": {
-      "1": true,
-      "2": false,
+      "1": false,
+      "2": true,
       "3": false
     }
   },
@@ -40,10 +40,10 @@
       "4": "More than 5 minutes"
     },
     "answers": {
-      "1": true,
+      "1": false,
       "2": false,
-      "3": false,
-      "4": false
+      "3": true,
+      "4": true
     }
   },
   {
@@ -67,7 +67,7 @@
       "text": ""
     },
     "answers": {
-      "text": "fsdf"
+      "text": "dd"
     }
   },
   {
@@ -101,8 +101,8 @@
       "5": "Strongly agree"
     },
     "answers": {
-      "1": true,
-      "2": false,
+      "1": false,
+      "2": true,
       "3": false,
       "4": false,
       "5": false
@@ -116,7 +116,7 @@
       "text": ""
     },
     "answers": {
-      "text": "sdfsdf"
+      "text": "ddd"
     }
   },
   {
@@ -130,7 +130,7 @@
     },
     "answers": {
       "1": true,
-      "2": false,
+      "2": true,
       "3": false
     }
   },
@@ -144,8 +144,8 @@
       "3": "As much as expected"
     },
     "answers": {
-      "1": true,
-      "2": false,
+      "1": false,
+      "2": true,
       "3": false
     }
   },

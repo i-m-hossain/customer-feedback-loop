@@ -3,6 +3,7 @@ import './globals.css'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './toastify-custom.css';
+import { SurveyProvider } from './Provider';
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
@@ -14,6 +15,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className='relative'>
+      <SurveyProvider >
         <body className={inter.className} >
 
           <h2 className='text-center font-bold text-lg fixed top-3 left-0 right-0 pb-1 border-b-2 border-orange-400'>Customer Feedback loop</h2>
@@ -23,6 +25,7 @@ export default function RootLayout({ children }) {
           </div>
           <ToastContainer />
         </body>
+        </SurveyProvider>
     </html>
   )
 }

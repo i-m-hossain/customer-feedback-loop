@@ -1,14 +1,16 @@
 "use client";
 import Button from "@/components/Button";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { routes } from "@/config/routes";
 import LocalStorage from "@/lib/localStorage";
 import { toast } from "react-toastify";
+import { SurveyContext } from "./Provider";
 
 export default function Home() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const {setData} = useContext(SurveyContext)
   const handleClick = (confirm) => {
     if (confirm) {
       fetchData();
@@ -32,6 +34,7 @@ export default function Home() {
       const response = await fetch(routes.surveyEndpoint);
       const data = await response.json();
       LocalStorage.set("surveyQuestions", data?.surveys?.surveys);
+      setData(data?.surveys?.surveys)
     } catch (err) {
       console.log(err);
     }
