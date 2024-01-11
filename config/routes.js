@@ -1,5 +1,5 @@
 const routes={
-    "surveyEndpoint": "http://localhost:3000/api/survey"
+    "surveyEndpoint": "/api/survey"
 }
 
 const constants={
